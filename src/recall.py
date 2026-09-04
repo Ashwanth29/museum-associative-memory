@@ -14,6 +14,8 @@ def recall_pattern(input_pattern, weights):
     recalled = np.where(activation >= 0, 1, 0)
 
     return recalled
+def calculate_accuracy(actual, predicted):
+    return np.mean(actual == predicted)
 
 
 if __name__ == "__main__":
@@ -24,6 +26,10 @@ if __name__ == "__main__":
     test_input = X[0]
 
     recalled_output = recall_pattern(test_input, weights)
+
+    accuracy = calculate_accuracy(Y[0], recalled_output)
+
+    print("\nRecall accuracy:", accuracy * 100, "%")
 
     print("Input pattern:")
     print(test_input)
