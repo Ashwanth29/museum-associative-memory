@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from prepare_data import load_artifact_data
 from train_associative_memory import (
     train_associative_memory,
@@ -16,6 +17,14 @@ def recall_pattern(input_pattern, weights):
     return recalled
 def calculate_accuracy(actual, predicted):
     return np.mean(actual == predicted)
+
+def display_pattern(pattern, title):
+    image = pattern.reshape(5, 5)
+
+    plt.imshow(image, cmap="gray")
+    plt.title(title)
+    plt.axis("off")
+    plt.show()
 
 
 if __name__ == "__main__":
@@ -39,3 +48,7 @@ if __name__ == "__main__":
 
     print("\nExpected restoration:")
     print(Y[0])
+
+    display_pattern(test_input, "Damaged Artifact")
+    display_pattern(recalled_output, "Recalled Restoration")
+    display_pattern(Y[0], "Expected Restoration")
